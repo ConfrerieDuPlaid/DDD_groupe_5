@@ -1,9 +1,9 @@
-package cat.confrerie_du_plaid.groupe_5.domain;
+package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationInvalide;
 
 public class Evaluation {
-    private double note;
+    private final double note;
 
     private Evaluation (double note) {
         this.note = note;

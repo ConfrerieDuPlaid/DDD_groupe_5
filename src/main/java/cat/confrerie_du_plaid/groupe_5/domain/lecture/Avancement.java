@@ -1,11 +1,11 @@
-package cat.confrerie_du_plaid.groupe_5.domain;
+package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
 
 public class Avancement {
-    private Integer pagesLues;
-    private Integer pagesTotales;
+    private final Integer pagesLues;
+    private final Integer pagesTotales;
 
     private Avancement(Integer page, Integer pagesTotales) {
         this.pagesLues = page;

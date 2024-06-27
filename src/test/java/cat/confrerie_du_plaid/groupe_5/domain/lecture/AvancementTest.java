@@ -1,4 +1,4 @@
-package cat.confrerie_du_plaid.groupe_5.domain;
+package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
