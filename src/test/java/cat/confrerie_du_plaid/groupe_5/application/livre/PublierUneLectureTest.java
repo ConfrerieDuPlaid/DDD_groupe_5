@@ -2,8 +2,10 @@ package cat.confrerie_du_plaid.groupe_5.application.livre;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.LivreNonTrouve;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.*;
+import cat.confrerie_du_plaid.groupe_5.domain.Livre;
+import cat.confrerie_du_plaid.groupe_5.domain.Livres;
+import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
+import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -27,15 +29,15 @@ class PublierUneLectureTest {
         }
     }
 
-    private static class MockPublications implements Publications {
+    private static class MockLectures implements Lectures {
         @Override
-        public void enregistrer(Publication publication) {
+        public void enregistrer(Lecture lecture) {
 
         }
     }
 
 
-    public static PublierUneLecture publierUneLecture = new PublierUneLecture(new MockLivres(), new MockPublications());
+    public static PublierUneLecture publierUneLecture = new PublierUneLecture(new MockLivres(), new MockLectures());
 
     @Test()
     void publierUneLectureAvecUnCommentaireEtUneNote() throws Exception {
