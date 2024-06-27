@@ -30,7 +30,7 @@ public class PublierUneLecture {
         }
 
         if(Objects.nonNull(commentaire) && commentaire.split(" ").length < 5)  {
-            throw new CommentaireInvalide();
+            throw new CommentaireInvalide("Le contenu du commentaire ne peut pas être vide");
         }
 
         if(Objects.nonNull(pagesLues) && pagesLues < 0) {
