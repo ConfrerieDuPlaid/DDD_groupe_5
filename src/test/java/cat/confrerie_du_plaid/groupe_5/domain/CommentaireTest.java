@@ -28,7 +28,7 @@ public class CommentaireTest {
     @Test
     public void commentaireValide () {
         String contenu = "Ce commentaire a cinq mots";
-        Commentaire commentaire = Commentaire.ecrireCommentaire(c addontenu);
+        Commentaire commentaire = Commentaire.ecrireCommentaire(contenu);
         Assertions.assertEquals(contenu, commentaire.getContenu());
     }
 }
