@@ -7,12 +7,23 @@ public class Avancement {
     private final Integer pagesLues;
     private final Integer pagesTotales;
 
-    private Avancement(Integer page, Integer pagesTotales) {
+
+    public static class SansAvancement extends Avancement {
+        public SansAvancement() {
+            super(0, 0);
+        }
+    }
+
+    protected Avancement(Integer page, Integer pagesTotales) {
         this.pagesLues = page;
         this.pagesTotales = pagesTotales;
     }
 
     public static Avancement sauvegarder(Integer pagesLues, Integer pagesTotales) throws PagesLuesInvalide, PagesTotalesInvalide {
+        if(pagesLues == null && pagesTotales == null) {
+            return new SansAvancement();
+        }
+
         if (pagesLues == null) {
             throw new PagesLuesInvalide("La page courante doit être renseignée");
         }

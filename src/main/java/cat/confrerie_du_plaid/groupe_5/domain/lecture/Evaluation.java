@@ -2,14 +2,25 @@ package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationInvalide;
 
-public class Evaluation {
-    private final double note;
+import java.util.Objects;
 
-    private Evaluation (double note) {
+public class Evaluation {
+    private final Double note;
+
+    public static class SansEvaluation extends Evaluation {
+        public SansEvaluation() {
+            super(Double.NaN);
+        }
+    }
+
+    protected Evaluation(Double note) {
         this.note = note;
     }
 
-    public static Evaluation ajouterUneNote(double note) throws EvaluationInvalide {
+    public static Evaluation ajouterUneNote(Double note) throws EvaluationInvalide {
+        if(Objects.isNull(note)){
+            return new SansEvaluation();
+        }
         if (note < 0 || note > 5) {
             throw new EvaluationInvalide("La note doit être comprise entre 0 et 5");
         }

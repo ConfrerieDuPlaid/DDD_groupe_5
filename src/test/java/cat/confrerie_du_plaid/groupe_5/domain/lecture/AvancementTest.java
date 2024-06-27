@@ -9,14 +9,14 @@ public class AvancementTest {
     @Test()
     public void avancementPagesLuesNull() {
         Assertions.assertThrows(PagesLuesInvalide.class, () -> {
-            Avancement avancement = Avancement.sauvegarder(null, 100);
+            var avancement = Avancement.sauvegarder(null, 100);
         });
     }
 
     @Test()
     public void avancementPagesLuesNegative() {
         Assertions.assertThrows(PagesLuesInvalide.class, () -> {
-            Avancement avancement = Avancement.sauvegarder(-1, 100);
+            var avancement = Avancement.sauvegarder(-1, 100);
         });
     }
 
@@ -36,7 +36,7 @@ public class AvancementTest {
 
     @Test()
     public void avancementAvecPagesLuesEtPagesTotales() throws PagesLuesInvalide, PagesTotalesInvalide {
-        Avancement avancement = Avancement.sauvegarder(50, 100);
+        var avancement = Avancement.sauvegarder(50, 100);
         Assertions.assertEquals(50, avancement.getPagesLues());
         Assertions.assertEquals(100, avancement.getPagesTotales());
     }
@@ -58,5 +58,10 @@ public class AvancementTest {
     public void pourcentageDeLecture() throws PagesLuesInvalide, PagesTotalesInvalide {
         Avancement avancement = Avancement.sauvegarder(50, 100);
         Assertions.assertEquals(50.0, avancement.pourcentageDeLecture());
+    }
+
+    @Test()
+    public void sansAnvancement() throws PagesLuesInvalide, PagesTotalesInvalide {
+        Assertions.assertInstanceOf(Avancement.SansAvancement.class, Avancement.sauvegarder(null, null));
     }
 }

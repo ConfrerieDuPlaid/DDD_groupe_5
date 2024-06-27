@@ -5,8 +5,14 @@ import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireI
 public class Commentaire {
     private final String contenu;
 
-    private Commentaire(String contenu) {
+    protected Commentaire(String contenu) {
         this.contenu = contenu;
+    }
+
+    public static class SansCommentaire extends Commentaire {
+        public SansCommentaire() {
+            super("");
+        }
     }
 
     public String getContenu() {
@@ -14,7 +20,10 @@ public class Commentaire {
     }
 
     public static Commentaire ecrireCommentaire(String contenu) throws CommentaireInvalide {
-        if (contenu == null || contenu.isEmpty()) {
+        if(contenu == null) {
+            return new SansCommentaire();
+        }
+        if (contenu.isBlank()) {
             throw new CommentaireInvalide("Le contenu du commentaire ne peut pas être vide");
         }
         if (contenu.split(" ").length < 5) {

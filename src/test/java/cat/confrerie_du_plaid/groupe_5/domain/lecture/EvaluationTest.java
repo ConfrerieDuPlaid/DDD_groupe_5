@@ -34,4 +34,9 @@ public class EvaluationTest {
         Assertions.assertEquals(3.5, evaluation.getNote());
     }
 
+    @Test()
+    public void sansEvaluation() throws EvaluationInvalide {
+        Assertions.assertInstanceOf(Evaluation.SansEvaluation.class, Evaluation.ajouterUneNote(null));
+    }
+
 }

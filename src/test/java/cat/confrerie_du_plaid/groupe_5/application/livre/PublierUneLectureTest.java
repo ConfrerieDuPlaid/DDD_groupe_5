@@ -2,11 +2,13 @@ package cat.confrerie_du_plaid.groupe_5.application.livre;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.LivreNonTrouve;
+import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.Livre;
 import cat.confrerie_du_plaid.groupe_5.domain.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -37,47 +39,75 @@ class PublierUneLectureTest {
     }
 
 
-    public static PublierUneLecture publierUneLecture = new PublierUneLecture(new MockLivres(), new MockLectures());
+    private final static PublierUneLecture publierUneLecture = new PublierUneLecture(new MockLivres(), new MockLectures());
 
-    @Test()
-    void publierUneLectureAvecUnCommentaireEtUneNote() throws Exception {
-        publierUneLecture.publier(livreIdConnu, commentaireValide, 4.5, 100, 200);
+    private static PublierUneLectureCommand command;
+
+    @BeforeEach
+    void setUp() {
+        command = new PublierUneLectureCommand(
+                livreIdConnu,
+                commentaireValide,
+                4.5,
+                100,
+                200
+        );
     }
 
     @Test()
-    void publierUneLectureAvecUnCommentaireMaisPasDevaluation() throws Exception{
-        publierUneLecture.publier(livreIdConnu, commentaireValide, null, 100, 200);
+    void publierUneLectureUneLectureAvecUnCommentaireEtUneNote() throws Exception {
+       Assertions.assertDoesNotThrow(() -> {
+           publierUneLecture.publierUneLecture(command);
+       });
     }
 
     @Test()
-    void publierUneLectureSansCommentaireMaisAvecUneNote() throws Exception {
-        publierUneLecture.publier(livreIdConnu, null, 4.5, 100, 200);
+    void publierUneLectureUneLectureAvecUnCommentaireMaisPasDevaluation() throws Exception{
+        command.evaluation = null;
+        Assertions.assertDoesNotThrow(() -> {
+            publierUneLecture.publierUneLecture(command);
+        });
+    }
+
+    @Test()
+    void publierUneLectureUneLectureSansCommentaireMaisAvecUneNote() throws Exception {
+        command.commentaire = null;
+        Assertions.assertDoesNotThrow(() -> {
+            publierUneLecture.publierUneLecture(command);
+        });
     }
 
     @Test()
     void unLivreNestPasTrouvé() {
+        command.livreId = "2";
         assertThrows(LivreNonTrouve.class, () -> {
-            publierUneLecture.publier("2", commentaireValide, 4.5, 100, 200);
+            publierUneLecture.publierUneLecture(command);
         });
     }
 
     @Test()
     public void commentaireVide() {
+            command.commentaire = "";
         Assertions.assertThrows(CommentaireInvalide.class, () -> {
-            publierUneLecture.publier(livreIdConnu, "", 4.5, 100, 200);
+            publierUneLecture.publierUneLecture(command);
         }, "Le contenu du commentaire ne peut pas être vide");
     }
 
     @Test()
     public void commentaireTropCourt() {
+        command.commentaire = "commentaire trop court";
         Assertions.assertThrows(CommentaireInvalide.class, () -> {
-            publierUneLecture.publier(livreIdConnu, "commentaire trop court", 4.5, 100, 200);
+            publierUneLecture.publierUneLecture(command);
         }, "Le contenu du commentaire doit contenir au moins 5 mots");
     }
 
     @Test()
     public void avancementPagesLuesNull() throws Exception {
-        publierUneLecture.publier(livreIdConnu, commentaireValide, 4.5, null, 200);
+        command.pagesLues = null;
+        Assertions.assertThrows(PagesLuesInvalide.class, () -> {
+            publierUneLecture.publierUneLecture(command);
+        });
+
     }
 
 

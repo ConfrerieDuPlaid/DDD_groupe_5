@@ -13,10 +13,9 @@ public class CommentaireTest {
     }
 
     @Test()
-    public void commentaireNull() {
-        Assertions.assertThrows(CommentaireInvalide.class, () -> {
-            Commentaire.ecrireCommentaire(null);
-        }, "Le contenu du commentaire ne peut pas être vide");
+    public void commentaireNull() throws CommentaireInvalide {
+        var commentaire = Commentaire.ecrireCommentaire(null);
+        assert(commentaire instanceof Commentaire.SansCommentaire);
     }
 
     @Test()
