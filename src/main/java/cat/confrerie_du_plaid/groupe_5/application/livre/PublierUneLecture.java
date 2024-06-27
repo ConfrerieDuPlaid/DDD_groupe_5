@@ -27,8 +27,13 @@ public class PublierUneLecture {
             throw new LivreNonTrouve("Livre n'existe pas");
         }
 
-        if(Objects.nonNull(commentaire) && commentaire.split(" ").length < 5)  {
-            throw new CommentaireInvalide("Le contenu du commentaire ne peut pas être vide");
+        if(Objects.nonNull(commentaire) ){
+            if(commentaire.isEmpty()) {
+                throw new CommentaireInvalide("Le contenu du commentaire ne peut pas être vide");
+            }
+            if(commentaire.split(" ").length < 5)  {
+                throw new CommentaireInvalide("Le contenu du commentaire ne peut pas être vide");
+            }
         }
 
         if(Objects.nonNull(pagesLues) && pagesLues < 0) {
@@ -39,9 +44,16 @@ public class PublierUneLecture {
             throw new PagesTotalesInvalide();
         }
 
-        if(Objects.nonNull(evaluation) && (evaluation < 0 || evaluation > 5)) {
-            throw new EvaluationInvalide();
+        if (Objects.nonNull(evaluation)) {
+            if (evaluation < 0 || evaluation > 5) {
+                throw new EvaluationInvalide();
+            }
+            boolean estUnDemiPoint = evaluation * 10 % 5 == 0;
+            if (!estUnDemiPoint) {
+                throw new IllegalArgumentException("La note doit être un multiple de 0.5");
+            }
         }
+
 
         var publication = new Publication(
                 livreId,
