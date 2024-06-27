@@ -6,6 +6,7 @@ import cat.confrerie_du_plaid.groupe_5.domain.Publication;
 import cat.confrerie_du_plaid.groupe_5.domain.Publications;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 public class PublierUneLecture {
@@ -17,10 +18,15 @@ public class PublierUneLecture {
         this.publications = publications;
     }
 
-    public Publication publier(String livreId, LocalDate dateDePublication, String commentaire, Double evaluation) throws LivreNonTrouve {
+    public Publication publier(String livreId, LocalDate dateDePublication, String commentaire, Double evaluation)
+            throws LivreNonTrouve, CommentaireInvalide {
         Optional<Livre> livre = livres.recupererUnLivreParSonId(livreId);
         if(livre.isEmpty()) {
             throw new LivreNonTrouve("Livre n'existe pas");
+        }
+
+        if(Objects.nonNull(commentaire) && commentaire.split(" ").length < 5)  {
+            throw new CommentaireInvalide();
         }
 
         var publication = new Publication();
