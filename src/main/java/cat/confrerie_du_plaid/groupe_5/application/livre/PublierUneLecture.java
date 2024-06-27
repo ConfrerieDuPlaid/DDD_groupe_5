@@ -22,8 +22,8 @@ public class PublierUneLecture {
         this.publications = publications;
     }
 
-    public Publication publier(String livreId, LocalDate dateDePublication, String commentaire, Double evaluation)
-            throws LivreNonTrouve, CommentaireInvalide {
+    public Publication publier(String livreId, String commentaire, Double evaluation, Integer pagesLues, Integer pagesTotales)
+            throws LivreNonTrouve, CommentaireInvalide, PageLuesInvalide, PagesTotalesInvalide, EvaluationInvalide {
         Optional<Livre> livre = livres.recupererUnLivreParSonId(livreId);
         if(livre.isEmpty()) {
             throw new LivreNonTrouve("Livre n'existe pas");
@@ -33,13 +33,25 @@ public class PublierUneLecture {
             throw new CommentaireInvalide();
         }
 
+        if(Objects.nonNull(pagesLues) && pagesLues < 0) {
+            throw new PageLuesInvalide();
+        }
 
+        if(Objects.nonNull(pagesLues) && Objects.nonNull(pagesTotales) && pagesTotales < pagesLues ) {
+            throw new PagesTotalesInvalide();
+        }
+
+        if(Objects.nonNull(evaluation) && (evaluation < 0 || evaluation > 5)) {
+            throw new EvaluationInvalide();
+        }
 
         var publication = new Publication(
                 livreId,
                 now(),
                 commentaire,
-                evaluation
+                evaluation,
+                pagesLues,
+                pagesTotales
         );
         publications.enregistrer(publication);
 
