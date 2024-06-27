@@ -1,24 +1,33 @@
 package cat.confrerie_du_plaid.groupe_5.application.livre;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PublierUneLectureTest {
 
-    @org.junit.jupiter.api.Test
+    @Test()
     void publierUneLectureAvecUnCommentaireEtUneNote() {
         PublierUneLecture publierUneLecture = new PublierUneLecture();
         assertNotNull(publierUneLecture.publier("1", null, "commentaire", 5.0));
     }
 
-    @org.junit.jupiter.api.Test
-    void publierUneLectureAvecUnCommentaireMaisPasDeNote() {
+    @Test()
+    void publierUneLectureAvecUnCommentaireMaisPasDevaluation() {
         PublierUneLecture publierUneLecture = new PublierUneLecture();
-        assertNotNull(publierUneLecture.publier("1", null, "commentaire", 5.0));
+        assertNotNull(publierUneLecture.publier("1", null, "commentaire", null));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test()
     void publierUneLectureSansCommentaireMaisAvecUneNote() {
         PublierUneLecture publierUneLecture = new PublierUneLecture();
-        assertNotNull(publierUneLecture.publier("1", null, "commentaire", 5.0));
+        assertNotNull(publierUneLecture.publier("1", null, null, 5.0));
+    }
+
+    @Test()
+    void unLivreNestPasTrouvé() {
+        PublierUneLecture publierUneLecture = new PublierUneLecture();
+        assertThrows(LivreNonTrouve.class, publierUneLecture.publier("id", null, "commentaire", 5.0));
     }
 }
