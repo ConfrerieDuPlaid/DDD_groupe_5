@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
+import static java.time.LocalDate.now;
+
 public class PublierUneLecture {
     private final Livres livres;
     private final Publications publications;
@@ -29,7 +31,14 @@ public class PublierUneLecture {
             throw new CommentaireInvalide();
         }
 
-        var publication = new Publication();
+
+
+        var publication = new Publication(
+                livreId,
+                now(),
+                commentaire,
+                evaluation
+        );
         publications.enregistrer(publication);
 
         return publication;
