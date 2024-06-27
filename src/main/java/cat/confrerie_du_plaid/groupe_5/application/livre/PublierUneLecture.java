@@ -1,13 +1,11 @@
 package cat.confrerie_du_plaid.groupe_5.application.livre;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.LivreNonTrouve;
+import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.*;
 import cat.confrerie_du_plaid.groupe_5.domain.Livre;
 import cat.confrerie_du_plaid.groupe_5.domain.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.Publication;
 import cat.confrerie_du_plaid.groupe_5.domain.Publications;
 
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,7 +21,7 @@ public class PublierUneLecture {
     }
 
     public Publication publier(String livreId, String commentaire, Double evaluation, Integer pagesLues, Integer pagesTotales)
-            throws LivreNonTrouve, CommentaireInvalide, PageLuesInvalide, PagesTotalesInvalide, EvaluationInvalide {
+            throws LivreNonTrouve, CommentaireInvalide, PagesTotalesInvalide, EvaluationInvalide, PagesLuesInvalide {
         Optional<Livre> livre = livres.recupererUnLivreParSonId(livreId);
         if(livre.isEmpty()) {
             throw new LivreNonTrouve("Livre n'existe pas");
@@ -34,7 +32,7 @@ public class PublierUneLecture {
         }
 
         if(Objects.nonNull(pagesLues) && pagesLues < 0) {
-            throw new PageLuesInvalide();
+            throw new PagesLuesInvalide();
         }
 
         if(Objects.nonNull(pagesLues) && Objects.nonNull(pagesTotales) && pagesTotales < pagesLues ) {

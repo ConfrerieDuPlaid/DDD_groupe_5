@@ -4,4 +4,7 @@ public class EvaluationInvalide extends Exception {
     public EvaluationInvalide(String message) {
         super(message);
     }
+
+    public EvaluationInvalide() {
+    }
 }

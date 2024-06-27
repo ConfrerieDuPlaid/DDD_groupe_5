@@ -37,4 +37,11 @@ public class Avancement {
     public Integer getPagesTotales() {
         return pagesTotales;
     }
+
+    public Double pourcentageDeLecture() {
+        if (pagesTotales == null) {
+            return null;
+        }
+        return (double) pagesLues / pagesTotales * 100;
+    }
 }

@@ -47,4 +47,16 @@ public class AvancementTest {
         Assertions.assertEquals(50, avancement.getPagesLues());
         Assertions.assertNull(avancement.getPagesTotales());
     }
+
+    @Test()
+    public void pourcentageDeLectureNull() throws PagesLuesInvalide, PagesTotalesInvalide {
+        Avancement avancement = Avancement.sauvegarder(50, null);
+        Assertions.assertNull(avancement.pourcentageDeLecture());
+    }
+
+    @Test()
+    public void pourcentageDeLecture() throws PagesLuesInvalide, PagesTotalesInvalide {
+        Avancement avancement = Avancement.sauvegarder(50, 100);
+        Assertions.assertEquals(50.0, avancement.pourcentageDeLecture());
+    }
 }
