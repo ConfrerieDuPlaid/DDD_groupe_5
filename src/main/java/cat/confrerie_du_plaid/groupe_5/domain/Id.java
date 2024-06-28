@@ -5,10 +5,10 @@ import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObjectId;
 import java.util.Objects;
 
 @ValueObjectId
-public class IdDefaut {
+public class Id {
     private final String _valeur;
 
-    private IdDefaut(String valeur) {
+    private Id(String valeur) {
         this._valeur = valeur;
     }
 
@@ -16,19 +16,19 @@ public class IdDefaut {
         return _valeur;
     }
 
-    public static IdDefaut depuis(String valeur) {
-        return new IdDefaut(valeur);
+    public static Id depuis(String valeur) {
+        return new Id(valeur);
     }
 
-    public static IdDefaut generate() {
-        return new IdDefaut(java.util.UUID.randomUUID().toString());
+    public static Id generate() {
+        return new Id(java.util.UUID.randomUUID().toString());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof IdDefaut idDefaut)) return false;
-        return Objects.equals(_valeur, idDefaut._valeur);
+        if (!(o instanceof Id id)) return false;
+        return Objects.equals(_valeur, id._valeur);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class IdDefaut {
 
     @Override
     public String toString() {
-        return "{ valeur='" + _valeur + "'}";
+        return "{valeur='" + _valeur + "'}";
     }
 }

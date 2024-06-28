@@ -1,6 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.domain.IdDefaut;
+import cat.confrerie_du_plaid.groupe_5.domain.Id;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.EvaluationInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
@@ -17,7 +17,7 @@ import static java.time.LocalDate.now;
 @AgregateRoot
 @Entity
 public class Lecture {
-    private final IdDefaut lectureId;
+    private final Id lectureId;
     private LivreId livreId;
     private LocalDate now;
 
@@ -26,14 +26,14 @@ public class Lecture {
     private Avancement avancement = new Avancement.SansAvancement();
     private Visibilite visibilite = Visibilite.AMIS;
 
-    public Lecture(IdDefaut id, LivreId livreId, LocalDate dateDeLecture) {
+    public Lecture(Id id, LivreId livreId, LocalDate dateDeLecture) {
         this.lectureId = id;
         this.livreId = livreId;
         this.now = dateDeLecture;
     }
 
     public static Lecture nouvelleLecturePourLeLivre(LivreId id) {
-        return new Lecture(IdDefaut.generate(), id, now());
+        return new Lecture(Id.generate(), id, now());
     }
 
     public void commenter(String commentaire) throws CommentaireInvalide {

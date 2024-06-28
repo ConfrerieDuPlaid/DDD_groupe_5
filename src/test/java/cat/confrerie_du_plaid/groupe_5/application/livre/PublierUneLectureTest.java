@@ -3,7 +3,7 @@ package cat.confrerie_du_plaid.groupe_5.application.livre;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.LivreNonTrouve;
 import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.Livres;
+import cat.confrerie_du_plaid.groupe_5.domain.livre.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
 import cat.confrerie_du_plaid.groupe_5.domain.livre.Livre;
@@ -27,7 +27,7 @@ class PublierUneLectureTest {
         @Override
         public Optional<Livre> recupererUnLivreParSonId(String livreId) {
             if(livreId.equals(PublierUneLectureTest.livreIdConnu))
-                return Optional.of(new Livre(LivreId.from(livreId)));
+                return Optional.of(new Livre(LivreId.depuis(livreId)));
             else
                 return Optional.empty();
         }

@@ -6,34 +6,34 @@ import java.util.Objects;
 
 @ValueObjectId
 public class LivreId{
-    private final String _value;
+    private final String _valeur;
 
-    private LivreId(String value) {
-        this._value = value;
+    private LivreId(String valeur) {
+        this._valeur = valeur;
     }
 
-    public String value() {
-        return _value;
+    public String valeur() {
+        return _valeur;
     }
 
-    public static LivreId from(String value) {
-        return new LivreId(value);
+    public static LivreId depuis(String valeur) {
+        return new LivreId(valeur);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof LivreId livreId)) return false;
-        return Objects.equals(_value, livreId._value);
+        return Objects.equals(_valeur, livreId._valeur);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(_value);
+        return Objects.hashCode(_valeur);
     }
 
     @Override
     public String toString() {
-        return "LivreId{value='" + _value + "'}";
+        return "LivreId{valeur='" + _valeur + "'}";
     }
 }
