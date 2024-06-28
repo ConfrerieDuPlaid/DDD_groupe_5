@@ -1,7 +1,7 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObject;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.EvaluationInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.annotations.ValueObject;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.EvaluationInvalide;
 
 import java.util.Objects;
 

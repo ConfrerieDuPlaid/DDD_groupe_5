@@ -1,7 +1,7 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.EvaluationInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.EvaluationInvalide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,4 +39,17 @@ public class EvaluationTest {
         Assertions.assertInstanceOf(Evaluation.SansEvaluation.class, Evaluation.ajouterUneNote(null));
     }
 
+    @Test()
+    public void evaluationEgalent() throws EvaluationInvalide {
+        Evaluation evaluation1 = Evaluation.ajouterUneNote(3.5);
+        Evaluation evaluation2 = Evaluation.ajouterUneNote(3.5);
+        assert(evaluation1.equals(evaluation2));
+    }
+
+    @Test()
+    public void evaluationNonEgalent() throws EvaluationInvalide {
+        Evaluation evaluation1 = Evaluation.ajouterUneNote(3.5);
+        Evaluation evaluation2 = Evaluation.ajouterUneNote(4.0);
+        assert(!evaluation1.equals(evaluation2));
+    }
 }

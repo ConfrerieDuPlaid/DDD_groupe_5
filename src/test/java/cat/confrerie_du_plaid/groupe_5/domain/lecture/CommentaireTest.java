@@ -1,6 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.CommentaireInvalide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +30,22 @@ public class CommentaireTest {
         String contenu = "Ce commentaire a cinq mots";
         Commentaire commentaire = Commentaire.ecrire(contenu);
         Assertions.assertEquals(contenu, commentaire.getContenu());
+    }
+
+    @Test()
+    public void commentaireEgal() throws CommentaireInvalide {
+        String contenu = "Ce commentaire a cinq mots";
+        Commentaire commentaire1 = Commentaire.ecrire(contenu);
+        Commentaire commentaire2 = Commentaire.ecrire(contenu);
+        assert(commentaire1.equals(commentaire2));
+    }
+
+    @Test()
+    public void commentatireNonEgal() throws CommentaireInvalide {
+        String contenu1 = "Ce commentaire a cinq mots";
+        String contenu2 = "Ce commentaire a six mots";
+        Commentaire commentaire1 = Commentaire.ecrire(contenu1);
+        Commentaire commentaire2 = Commentaire.ecrire(contenu2);
+        assert(!commentaire1.equals(commentaire2));
     }
 }

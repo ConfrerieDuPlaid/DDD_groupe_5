@@ -1,6 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.livre;
 
-import cat.confrerie_du_plaid.groupe_5.domain.annotations.Entity;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.annotations.Entity;
 
 import java.util.Objects;
 

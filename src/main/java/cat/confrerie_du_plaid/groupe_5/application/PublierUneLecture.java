@@ -1,12 +1,11 @@
-package cat.confrerie_du_plaid.groupe_5.application.livre;
+package cat.confrerie_du_plaid.groupe_5.application;
 
 import cat.confrerie_du_plaid.groupe_5.application.annotations.UseCase;
-import cat.confrerie_du_plaid.groupe_5.domain.livre.Livres;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.*;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Visibilite;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.VisibiliteInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.livre.Livres;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.*;
 import cat.confrerie_du_plaid.groupe_5.infrastructure.shared.PublierUneLectureCommand;
 
 @UseCase
@@ -20,7 +19,7 @@ public class PublierUneLecture {
     }
 
     public Lecture publierUneLecture(PublierUneLectureCommand command)
-            throws LivreNonTrouve, CommentaireInvalide, PagesTotalesInvalide, EvaluationInvalide, PagesLuesInvalide, VisibiliteInvalide {
+            throws LivreNonTrouve, CommentaireInvalide, PagesTotalesInvalide, EvaluationInvalide, PagesLuesInvalide, VisibiliteInvalide, LectureInvalide {
         var livre = livres
                 .recupererUnLivreParSonId(command.livreId)
                 .orElseThrow(() -> new LivreNonTrouve("Livre n'existe pas"));

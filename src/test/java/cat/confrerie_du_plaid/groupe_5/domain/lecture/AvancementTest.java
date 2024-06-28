@@ -1,7 +1,7 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesTotalesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.PagesTotalesInvalide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -63,5 +63,19 @@ public class AvancementTest {
     @Test()
     public void sansAnvancement() throws PagesLuesInvalide, PagesTotalesInvalide {
         Assertions.assertInstanceOf(Avancement.SansAvancement.class, Avancement.sauvegarder(null, null));
+    }
+
+    @Test()
+    public void avancementEgal() throws PagesLuesInvalide, PagesTotalesInvalide {
+        Avancement avancement1 = Avancement.sauvegarder(50, 100);
+        Avancement avancement2 = Avancement.sauvegarder(50, 100);
+        Assertions.assertTrue(avancement1.equals(avancement2));
+    }
+
+    @Test()
+    public void avancementNonEgal() throws PagesLuesInvalide, PagesTotalesInvalide {
+        Avancement avancement1 = Avancement.sauvegarder(50, 100);
+        Avancement avancement2 = Avancement.sauvegarder(51, 100);
+        Assertions.assertFalse(avancement1.equals(avancement2));
     }
 }

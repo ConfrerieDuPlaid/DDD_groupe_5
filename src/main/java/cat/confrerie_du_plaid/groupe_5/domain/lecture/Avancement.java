@@ -1,8 +1,8 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesTotalesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObject;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.PagesTotalesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.annotations.ValueObject;
 
 import java.util.Objects;
 

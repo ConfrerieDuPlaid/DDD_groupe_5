@@ -1,8 +1,9 @@
 package cat.confrerie_du_plaid.groupe_5.application.livre;
 
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.LivreNonTrouve;
-import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.application.PublierUneLecture;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.CommentaireInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.LivreNonTrouve;
+import cat.confrerie_du_plaid.groupe_5.domain.shared.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.livre.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
