@@ -3,10 +3,13 @@ package cat.confrerie_du_plaid.groupe_5.application.livre;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.LivreNonTrouve;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.Livre;
+import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
+import cat.confrerie_du_plaid.groupe_5.domain.livre.Livre;
 import cat.confrerie_du_plaid.groupe_5.domain.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lectures;
+import cat.confrerie_du_plaid.groupe_5.domain.livre.LivreId;
+import cat.confrerie_du_plaid.groupe_5.infrastructure.shared.PublierUneLectureCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +28,7 @@ class PublierUneLectureTest {
         @Override
         public Optional<Livre> recupererUnLivreParSonId(String livreId) {
             if(livreId.equals(PublierUneLectureTest.livreIdConnu))
-                return Optional.of(new Livre());
+                return Optional.of(new Livre(LivreId.from(livreId)));
             else
                 return Optional.empty();
         }

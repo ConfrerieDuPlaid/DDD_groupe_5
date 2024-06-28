@@ -1,5 +1,6 @@
-package cat.confrerie_du_plaid.groupe_5.application.livre;
+package cat.confrerie_du_plaid.groupe_5.infrastructure.shared;
 
+@DTO
 public class PublierUneLectureCommand {
         public String livreId;
         public String commentaire;
@@ -14,4 +15,4 @@ public class PublierUneLectureCommand {
             this.pagesLues = pagesLues;
             this.pagesTotales = pagesTotales;
         }
-    }
+}

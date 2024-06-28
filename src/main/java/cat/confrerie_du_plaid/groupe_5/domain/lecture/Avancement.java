@@ -2,11 +2,12 @@ package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObject;
 
+@ValueObject
 public class Avancement {
     private final Integer pagesLues;
     private final Integer pagesTotales;
-
 
     public static class SansAvancement extends Avancement {
         public SansAvancement() {
