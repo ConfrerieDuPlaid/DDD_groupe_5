@@ -1,6 +1,5 @@
 package cat.confrerie_du_plaid.groupe_5.domain.livre;
 
-import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
 import cat.confrerie_du_plaid.groupe_5.domain.ValueObjectId;
 
 import java.util.Objects;

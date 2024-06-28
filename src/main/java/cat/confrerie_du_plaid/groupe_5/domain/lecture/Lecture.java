@@ -4,7 +4,7 @@ import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireI
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
+import cat.confrerie_du_plaid.groupe_5.domain.IdDefaut;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.AgregateRoot;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.Entity;
 
@@ -15,8 +15,8 @@ import static java.time.LocalDate.now;
 @AgregateRoot
 @Entity
 public class Lecture {
-    private final DefaultId lectureId;
-    private DefaultId livreId;
+    private final IdDefaut lectureId;
+    private IdDefaut livreId;
     private LocalDate now;
 
     private Commentaire commentaire;
@@ -24,7 +24,7 @@ public class Lecture {
     private Avancement avancement;
     private Visibilite visibilite;
 
-    public Lecture(DefaultId id, DefaultId livreId) {
+    public Lecture(IdDefaut id, IdDefaut livreId) {
         this.lectureId = id;
         this.livreId = livreId;
         this.now = now();

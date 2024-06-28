@@ -5,7 +5,7 @@ import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.*;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.*;
 import cat.confrerie_du_plaid.groupe_5.domain.livre.Livre;
 import cat.confrerie_du_plaid.groupe_5.domain.Livres;
-import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
+import cat.confrerie_du_plaid.groupe_5.domain.IdDefaut;
 import cat.confrerie_du_plaid.groupe_5.infrastructure.shared.PublierUneLectureCommand;
 
 import java.util.Optional;
@@ -28,8 +28,8 @@ public class PublierUneLecture {
         }
 
         var lecture = new Lecture(
-                DefaultId.generate(),
-                DefaultId.from(command.livreId)
+                IdDefaut.generate(),
+                IdDefaut.depuis(command.livreId)
         );
 
         lecture.commenter(command.commentaire);
