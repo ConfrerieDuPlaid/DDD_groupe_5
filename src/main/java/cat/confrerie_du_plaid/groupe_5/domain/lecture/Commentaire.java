@@ -19,7 +19,7 @@ public class Commentaire {
         return contenu;
     }
 
-    public static Commentaire ecrireCommentaire(String contenu) throws CommentaireInvalide {
+    public static Commentaire ecrire(String contenu) throws CommentaireInvalide {
         if(contenu == null) {
             return new SansCommentaire();
         }

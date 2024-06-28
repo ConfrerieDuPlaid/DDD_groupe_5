@@ -9,7 +9,7 @@ public class Evaluation {
 
     public static class SansEvaluation extends Evaluation {
         public SansEvaluation() {
-            super(Double.NaN);
+            super(0.0);
         }
     }
 

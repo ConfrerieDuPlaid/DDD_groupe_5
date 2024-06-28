@@ -29,11 +29,13 @@ public class PublierUneLecture {
 
         var lecture = new Lecture(
                 DefaultId.generate(),
-                DefaultId.from(command.livreId),
-                Commentaire.ecrireCommentaire(command.commentaire),
-                Evaluation.ajouterUneNote(command.evaluation),
-                Avancement.sauvegarder(command.pagesLues, command.pagesTotales)
+                DefaultId.from(command.livreId)
         );
+
+        lecture.commenter(command.commentaire);
+        lecture.evaluer(command.evaluation);
+        lecture.definirAvancement(command.pagesLues, command.pagesTotales);
+        lecture.definirVisibilite(command.visibilite);
 
         lectures.enregistrer(lecture);
         return lecture;
