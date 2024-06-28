@@ -5,12 +5,14 @@ import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationIn
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
+import cat.confrerie_du_plaid.groupe_5.domain.annotations.AgregateRoot;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.Entity;
 
 import java.time.LocalDate;
 
 import static java.time.LocalDate.now;
 
+@AgregateRoot
 @Entity
 public class Lecture {
     private final DefaultId lectureId;

@@ -3,7 +3,6 @@ package cat.confrerie_du_plaid.groupe_5.application.livre;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.LivreNonTrouve;
 import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.domain.DefaultId;
 import cat.confrerie_du_plaid.groupe_5.domain.livre.Livre;
 import cat.confrerie_du_plaid.groupe_5.domain.Livres;
 import cat.confrerie_du_plaid.groupe_5.domain.lecture.Lecture;
@@ -53,7 +52,8 @@ class PublierUneLectureTest {
                 commentaireValide,
                 4.5,
                 100,
-                200
+                200,
+                "AMIS"
         );
     }
 

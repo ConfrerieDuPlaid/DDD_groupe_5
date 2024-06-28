@@ -21,7 +21,7 @@ public class PublierUneLecture {
     }
 
     public Lecture publierUneLecture(PublierUneLectureCommand command)
-            throws LivreNonTrouve, CommentaireInvalide, PagesTotalesInvalide, EvaluationInvalide, PagesLuesInvalide {
+            throws LivreNonTrouve, CommentaireInvalide, PagesTotalesInvalide, EvaluationInvalide, PagesLuesInvalide, VisibiliteInvalide {
         Optional<Livre> livre = livres.recupererUnLivreParSonId(command.livreId);
         if(livre.isEmpty()) {
             throw new LivreNonTrouve("Livre n'existe pas");
@@ -35,7 +35,7 @@ public class PublierUneLecture {
         lecture.commenter(command.commentaire);
         lecture.evaluer(command.evaluation);
         lecture.definirAvancement(command.pagesLues, command.pagesTotales);
-        lecture.definirVisibilite(command.visibilite);
+        lecture.definirVisibilite(Visibilite.depuis(command.visibilite));
 
         lectures.enregistrer(lecture);
         return lecture;
