@@ -1,8 +1,10 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesTotalesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObject;
+
+import java.util.Objects;
 
 @ValueObject
 public class Avancement {
@@ -55,5 +57,17 @@ public class Avancement {
             return null;
         }
         return (double) pagesLues / pagesTotales * 100;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Avancement that)) return false;
+        return Objects.equals(getPagesLues(), that.getPagesLues()) && Objects.equals(getPagesTotales(), that.getPagesTotales());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPagesLues(), getPagesTotales());
     }
 }

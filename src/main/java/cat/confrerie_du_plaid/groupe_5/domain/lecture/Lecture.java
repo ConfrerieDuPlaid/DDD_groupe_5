@@ -1,14 +1,16 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.IdDefaut;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.EvaluationInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesTotalesInvalide;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.AgregateRoot;
 import cat.confrerie_du_plaid.groupe_5.domain.annotations.Entity;
+import cat.confrerie_du_plaid.groupe_5.domain.livre.LivreId;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static java.time.LocalDate.now;
 
@@ -16,19 +18,22 @@ import static java.time.LocalDate.now;
 @Entity
 public class Lecture {
     private final IdDefaut lectureId;
-    private IdDefaut livreId;
+    private LivreId livreId;
     private LocalDate now;
 
-    private Commentaire commentaire;
-    private Evaluation evaluation;
-    private Avancement avancement;
-    private Visibilite visibilite;
+    private Commentaire commentaire = new Commentaire.SansCommentaire();
+    private Evaluation evaluation = new Evaluation.SansEvaluation();
+    private Avancement avancement = new Avancement.SansAvancement();
+    private Visibilite visibilite = Visibilite.AMIS;
 
-    public Lecture(IdDefaut id, IdDefaut livreId) {
+    public Lecture(IdDefaut id, LivreId livreId, LocalDate dateDeLecture) {
         this.lectureId = id;
         this.livreId = livreId;
-        this.now = now();
-        this.visibilite = Visibilite.AMIS;
+        this.now = dateDeLecture;
+    }
+
+    public static Lecture nouvelleLecturePourLeLivre(LivreId id) {
+        return new Lecture(IdDefaut.generate(), id, now());
     }
 
     public void commenter(String commentaire) throws CommentaireInvalide {
@@ -45,5 +50,17 @@ public class Lecture {
 
     public void definirVisibilite(Visibilite visibilite) {
         this.visibilite = visibilite;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lecture lecture)) return false;
+        return Objects.equals(lectureId, lecture.lectureId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(lectureId);
     }
 }

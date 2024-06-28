@@ -1,6 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.livre;
 
-import cat.confrerie_du_plaid.groupe_5.domain.ValueObjectId;
+import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObjectId;
 
 import java.util.Objects;
 

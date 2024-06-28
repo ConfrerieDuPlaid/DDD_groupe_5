@@ -1,9 +1,11 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.EvaluationInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObject;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.EvaluationInvalide;
 
 import java.util.Objects;
 
+@ValueObject
 public class Evaluation {
     private final Double note;
 
@@ -33,5 +35,17 @@ public class Evaluation {
 
     public double getNote() {
         return note;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Evaluation that)) return false;
+        return Objects.equals(getNote(), that.getNote());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getNote());
     }
 }

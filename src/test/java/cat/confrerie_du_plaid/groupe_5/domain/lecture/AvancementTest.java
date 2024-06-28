@@ -1,7 +1,7 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesLuesInvalide;
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.PagesTotalesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesLuesInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.PagesTotalesInvalide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

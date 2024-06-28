@@ -1,5 +1,7 @@
 package cat.confrerie_du_plaid.groupe_5.domain;
 
+import cat.confrerie_du_plaid.groupe_5.domain.annotations.ValueObjectId;
+
 import java.util.Objects;
 
 @ValueObjectId

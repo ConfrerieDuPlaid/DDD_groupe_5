@@ -1,5 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.VisibiliteInvalide;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

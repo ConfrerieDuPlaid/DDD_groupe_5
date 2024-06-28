@@ -1,6 +1,6 @@
 package cat.confrerie_du_plaid.groupe_5.domain.lecture;
 
-import cat.confrerie_du_plaid.groupe_5.application.livre.exceptions.CommentaireInvalide;
+import cat.confrerie_du_plaid.groupe_5.domain.exceptions.CommentaireInvalide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
